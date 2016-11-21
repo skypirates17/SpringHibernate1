@@ -14,7 +14,7 @@ public class Student {
 	@Id
 	@Column(name="student_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private Integer id;
 
 	@Column(name="student_name")
 	private String name;
@@ -25,11 +25,11 @@ public class Student {
 	@Column(name="student_address")
 	private String address;
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -63,7 +63,7 @@ public class Student {
 		
 		sb.append("id=" + this.id);
 		sb.append(", name=" + this.name);
-		sb.append(", age" + this.age);
+		sb.append(", age=" + this.age);
 		sb.append(", address=" + this.address);
 		
 		return sb.toString();

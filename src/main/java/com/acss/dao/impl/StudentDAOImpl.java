@@ -31,29 +31,26 @@ public class StudentDAOImpl implements StudentDAO {
 	
 	@Override
 	public void save(Student student) {
-		//Session session = 
-				this.getSessionFactory().save(student); //this.sessionFactory.openSession();
-		//Transaction tx = session.beginTransaction();
-		//session.persist(student);
-		//tx.commit();
-		//session.close();
+		this.getSessionFactory().save(student); 
 	}
 
 	@Override
 	public List<Student> list() {
-		/*
-		Session session = sessionFactory.getCurrentSession(); //this.sessionFactory.openSession();
-		List<Student> personList = session.createQuery("from student_info").list();
-		session.close();
-		return personList;
-		*/
-
 		Query query = this.getSessionFactory().createQuery("from Student");
-		//query.setParameter("iduser", dto.getUser().getId());
-		
 		List<Student> personList = query.list();
 
 		return personList;
+	}
+
+	@Override
+	public void update(Student student) {
+		this.getSessionFactory().update(student);
+		
+	}
+
+	@Override
+	public void delete(Student student) {
+		this.getSessionFactory().delete(student);
 	}
 
 }

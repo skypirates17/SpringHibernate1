@@ -75,15 +75,15 @@
 			</property>
 		</bean>-->
 		
-		 <!-- holding properties for database connectivity 
-    <context:property-placeholder location="classpath:jdbc.properties"/> /-->
+		 <!-- holding properties for database connectivity -->
+    	<context:property-placeholder location="classpath:en.properties"/> 
     
 		<!-- 	datasource bean -->
 		<bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	       <property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://127.0.0.1:5432/School" />
-		<property name="username" value="postgres" />
-		<property name="password" value="postgres" />
+	        <property name="driverClassName" value="${db.driver}" />
+	        <property name="url" value="${db.url}" />
+	        <property name="username" value="${db.username}" />
+	        <property name="password" value="${db.password}" />
 	    </bean>
 	    
 	    <!-- Hibernate session factory -->
@@ -91,9 +91,10 @@
 		    <property name="dataSource" ref="dataSourceBean" />		
 		    <property name="hibernateProperties">
 		       <props>
-		         <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-		         <prop key="hibernate.show_sql">true</prop>
-		         <prop key="hibernate.format_sql">true</prop>
+		         <prop key="hibernate.dialect">${hbm.dialect}</prop>
+		         <prop key="hibernate.show_sql">${hbm.showsql}</prop>
+		         <prop key="hibernate.format_sql">${hbm.formatsql}</prop>
+		         <prop key="hibernate.use_sql_comments">${hbm.usesqlcomments}</prop>
 		       </props>
 		    </property>	
 		    

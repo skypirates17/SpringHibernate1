@@ -1,11 +1,10 @@
-package com.acss.dao;
+package com.acss.service;
 
 import java.util.List;
 
 import com.acss.model.Student;
 
-public interface StudentDAO {
-
+public interface IStudentService {
 	List<Student> list();
 	
 	void save (Student student);
@@ -13,5 +12,4 @@ public interface StudentDAO {
 	void update (Student student);
 	
 	void delete (Student student);
-	
 }
