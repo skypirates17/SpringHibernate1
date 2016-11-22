@@ -5,11 +5,24 @@ import java.util.List;
 import com.acss.model.Student;
 
 public interface IStudentService {
-	List<Student> list();
+	List<Student> listAllHQL();
 	
-	void save (Student student);
+	void saveHQL (Student student);
 	
-	void update (Student student);
+	void updateHQL (Student student);
 	
-	void delete (Student student);
+	void deleteHQL (Student student);
+	
+	Student getByIdHQL (Student student);
+	
+	
+	List<Student> listAllNQL();
+	
+	void saveNQL (Student student);
+	
+	void updateNQL (Student student);
+	
+	void deleteNQL (Student student);
+	
+	Student getByIdNQL (Student student);
 }

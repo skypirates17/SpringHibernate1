@@ -1,7 +1,8 @@
 package com.acss.service.impl;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.acss.dao.StudentDAO;
@@ -11,27 +12,60 @@ import com.acss.service.IStudentService;
 @Service
 public class StudentService implements IStudentService {
 
-	@Autowired
-	private StudentDAO studentDao;
+	@Resource(name="StudentDAOHQLImpl")
+	private StudentDAO studentDAOHQLImpl;
+	
+	@Resource(name="StudentDAONQLImpl")
+	private StudentDAO studentDAONQLImpl;
 	
 	@Override
-	public List<Student> list() {
-		return studentDao.list();
+	public List<Student> listAllHQL() {
+		return studentDAOHQLImpl.listAll();
 	}
 
 	@Override
-	public void save(Student student) {
-		studentDao.save(student);
+	public void saveHQL(Student student) {
+		studentDAOHQLImpl.save(student);
 	}
 
 	@Override
-	public void update(Student student) {
-		studentDao.update(student);
+	public void updateHQL(Student student) {
+		studentDAOHQLImpl.update(student);
 	}
 
 	@Override
-	public void delete(Student student) {
-		studentDao.delete(student);
+	public void deleteHQL(Student student) {
+		studentDAOHQLImpl.delete(student);
+	}
+	
+	@Override
+	public Student getByIdHQL(Student student) {
+		return studentDAOHQLImpl.getById(student);
+	}
+
+	@Override
+	public List<Student> listAllNQL() {
+		return studentDAONQLImpl.listAll();
+	}
+
+	@Override
+	public void saveNQL(Student student) {
+		studentDAONQLImpl.save(student);
+	}
+
+	@Override
+	public void updateNQL(Student student) {
+		studentDAONQLImpl.update(student);
+	}
+
+	@Override
+	public void deleteNQL(Student student) {
+		studentDAONQLImpl.delete(student);
+	}
+
+	@Override
+	public Student getByIdNQL(Student student) {
+		return studentDAONQLImpl.getById(student);
 	}
 
 }

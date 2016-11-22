@@ -13,12 +13,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.acss.model.Student;
 import com.acss.service.IStudentService;
 
-
+/**
+ * JUNIT Testing for Hibernate Query Language
+ * 
+ * @author Johnrey Angolluan
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:dispatcher-servlet.xml")
-public class SpringHibernateMain {
+public class TestSpringHibernateHQL {
 
-	private final Logger logger = Logger.getLogger(SpringHibernateMain.class);
+	private final Logger logger = Logger.getLogger(TestSpringHibernateHQL.class);
 	
 	@Autowired
 	private IStudentService studentService;
@@ -29,46 +34,54 @@ public class SpringHibernateMain {
 	}
 	
 	
-	public void testList() {
-		List<Student> list = studentService.list();
+	public void testListHQL() {
+		List<Student> list = studentService.listAllHQL();
 		
 		for(Student std : list){
 			logger.debug("Student List::" + std);
 		}
 	}
 	
+	@Test
+	public void testGetByIdHQL() {
+		Student student = new Student();
+		student.setId(1);
+		
+		Student studInfo = studentService.getByIdHQL(student);
+		logger.debug("STUDENT ==> " + studInfo);
+	}
 	
-	public void testSave() {
+	public void testSaveHQL() {
 		Student student = new Student();
 		student.setName("MAMA"); 
 		student.setAddress("PERU");
 		student.setAge("18");
 		
-		studentService.save(student);
+		studentService.saveHQL(student);
 		
-		this.testList();
+		this.testListHQL();
 	}
 	
-	@Test
-	public void testUpdate() {
+	
+	public void testUpdateHQL() {
 		Student student = new Student();
 		student.setId(22);
 		student.setName("HOHOHOHO"); 
 		student.setAddress("HEHEHEHEH");
 		student.setAge("55");
 		
-		studentService.update(student);
+		studentService.updateHQL(student);
 		
-		this.testList();
+		this.testListHQL();
 	}
 	
-	public void testDelete() {
+	public void testDeleteHQL() {
 		Student student = new Student();
 		student.setId(21);
 		
-		studentService.delete(student);
+		studentService.deleteHQL(student);
 		
-		this.testList();
+		this.testListHQL();
 	}
 	
 	/*

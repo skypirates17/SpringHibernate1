@@ -6,7 +6,9 @@ import com.acss.model.Student;
 
 public interface StudentDAO {
 
-	List<Student> list();
+	List<Student> listAll();
+	
+	Student getById(Student student);
 	
 	void save (Student student);
 	

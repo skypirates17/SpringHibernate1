@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,18 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.acss.dao.StudentDAO;
 import com.acss.model.Student;
 
-@Repository
+/**
+ * Hibernate Query Languange
+ * 
+ * @author Johnrey Angolluan
+ *
+ */
+
 @Transactional
-public class StudentDAOImpl implements StudentDAO {
+@SuppressWarnings("unchecked")
+@Repository("StudentDAOHQLImpl")
+public class StudentDAOHQLImpl implements StudentDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-
-	 /**
-     * provides session factory that do not need to close after querying
-     * @return Session for crud operations
-     */
 	public Session getSessionFactory() {
         return sessionFactory.getCurrentSession();
     }
@@ -34,12 +36,12 @@ public class StudentDAOImpl implements StudentDAO {
 		this.getSessionFactory().save(student); 
 	}
 
+	
 	@Override
-	public List<Student> list() {
+	public List<Student> listAll() {
 		Query query = this.getSessionFactory().createQuery("from Student");
-		List<Student> personList = query.list();
-
-		return personList;
+		List<Student> studentList = query.list();
+		return studentList;
 	}
 
 	@Override
@@ -51,6 +53,14 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public void delete(Student student) {
 		this.getSessionFactory().delete(student);
+	}
+
+	@Override
+	public Student getById(Student student) {
+		Query query = this.getSessionFactory().createQuery("from Student where id=:studentid");
+		query.setParameter("studentid", student.getId());
+		
+		return (Student) query.uniqueResult(); // query.list().get(0);
 	}
 
 }
