@@ -7,8 +7,8 @@ This is only a POC, it has no front-end interface.
 
 Technlogies / Tools used in this project:
 
-1. Spring Framework 3
-2. Hibernate 4 (Annotation) 
+1. Spring Framework
+2. Hibernate (Annotation) 
 3. PostgreSQL (Database)
 4. Maven
 5. JUnit
