@@ -26,17 +26,16 @@ public class StudentDAOHQLImpl implements StudentDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public Session getSessionFactory() {
-        return sessionFactory.getCurrentSession();
-    }
-	
-	@Override
-	public void save(Student student) {
-		this.getSessionFactory().save(student); 
+		return sessionFactory.getCurrentSession();
 	}
 
-	
+	@Override
+	public void save(Student student) {
+		this.getSessionFactory().save(student);
+	}
+
 	@Override
 	public List<Student> listAll() {
 		Query query = this.getSessionFactory().createQuery("from Student");
@@ -47,7 +46,7 @@ public class StudentDAOHQLImpl implements StudentDAO {
 	@Override
 	public void update(Student student) {
 		this.getSessionFactory().update(student);
-		
+
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class StudentDAOHQLImpl implements StudentDAO {
 	public Student getById(Student student) {
 		Query query = this.getSessionFactory().createQuery("from Student where id=:studentid");
 		query.setParameter("studentid", student.getId());
-		
+
 		return (Student) query.uniqueResult(); // query.list().get(0);
 	}
 
