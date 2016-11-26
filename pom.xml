@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>SpringHibernate1</groupId>
 	<artifactId>SpringHibernate1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.01</version>
 	<packaging>war</packaging>
 
 	<properties>
@@ -105,6 +105,11 @@
 	</dependencies>
 	<build>
 		<testSourceDirectory>src/main/test</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resource</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
